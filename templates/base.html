@@ -5,25 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App</title>
+
+    <!--== Semantic UI cdn ==-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 </head>
-<body>
-    
-    <h1>Python To-Do App</h1>
+<body style="background-color: ghostwhite;">
+    <div class="ui container" style="margin-top: 3.125rem;">
 
-    <form action="">
+        <h1  class="ui center aligned header">To-Do App {Python Project}</h1>
 
-        <div class="">
-            <label for="title">To-Do Title:</label>
-            <input type="text" name="title" placeholder="Enter To-do..."><br>
-            <button type="submit">Add To List</button>
-        </div>
-            
-    </form>
+        <form class="ui form" action="/add" method="post">
 
-    {% for todo in todo_list%}
+            <div class="field">
+                <label for="title">To-Do Title:</label>
+                <input class="ui input focus" type="text" name="title" placeholder="Enter To-do..."><br>
+                <button class="ui blue button" type="submit" style="margin-top: .5rem;">Add To List</button>
+            </div>
+                
+        </form>
 
-    <p> {{todo.id}} | {{todo.title}} </p>
+        <!--== Jinja Code ==-->
+        {% for todo in todo_list %}
+            <div class="ui segment">  
+                <p class="ui big header"> {{todo.id}} | {{todo.title}} </p>
 
-    {% endfor%}
+                {% if todo.complete == False %}
+                        <span class="ui gray label">Not Complete</span>
+                {% else %}
+                        <span style="cursor: pointer;" class="ui green label">Completed</span>
+                {% endif %}
+
+                <a class="ui blue button" href="/update/{{todo.id}}">Update...</a>
+                <a class="ui red button" href="/delete/{{todo.id}}">Delete</a>
+            </div>
+        {% endfor %}
+
+        <footer class="ui center aligned footer" style="align-items: center; text-align: center;"> Developed By Fasogbon Olamide .S &copy; Certified Dev.</footer>
+
+    </di>
+
+    <!--== Semantic UI cdn script ==-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </body>
 </html>
